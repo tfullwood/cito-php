@@ -1,0 +1,8 @@
+/* Styles */
+.container {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+}
