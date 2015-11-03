@@ -18,4 +18,4 @@
 
 <body>
 <div class="container">
-<a href="index.php?route=common/home"><h4>Cito PHP Homepage</h4></a>
+<a href="<?php echo $home_link; ?>"><h4>Cito PHP Homepage</h4></a>

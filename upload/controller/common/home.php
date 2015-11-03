@@ -4,6 +4,10 @@ class ControllerCommonHome extends Controller {
 		//Pass variables to children
 		$this->child_data = array();
 		
+    //Get links for view
+    $this->data['example_link'] = $this->getUrl('example/page');
+    $this->data['seo_link'] = $this->getUrl('example/seo');
+    
 		//Set up all the data to pass to the header
 		$header_data = array();
 		$header_data['title'] = 'Cito PHP | Lightweight PHP MVC Framework';

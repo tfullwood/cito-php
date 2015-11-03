@@ -1,10 +1,17 @@
 <?php
 final class Document {
-	private $file;
-	private $class;
-	private $styles = array();
-	private $scripts = array();
-	
+	public $file;
+	public $class;
+	public $styles = array();
+	public $scripts = array();
+	public $url_query;
+  public $url_id;
+  
+  
+  public function __construct() {
+    
+  }
+  
 	public function addStyle($href, $rel = 'stylesheet', $media = 'screen') {
 		$this->styles[md5($href)] = array(
 			'href'  => $href,

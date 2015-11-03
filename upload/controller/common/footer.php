@@ -1,8 +1,7 @@
 <?php  
 class ControllerCommonFooter extends Controller {
 	public function index() {
-		//I need to set up the title and the meta description
-		
+		//Check for the view and set it
 		if (file_exists(DIR_ROOT . 'view/template/common/footer.php')) {
 			$this->template = 'common/footer.php';
 		} else {

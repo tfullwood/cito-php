@@ -3,7 +3,7 @@ class ModelExamplePage extends Model {
 	public $sql;
 	
 	public function example() {
-		return $this->query('YOUR DB QUERY');
+		return $this->query('SELECT * FROM `url_alias` WHERE `url_alias_id` = "1"');
 	}
 	
 	public function anotherExample($data) {

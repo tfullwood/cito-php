@@ -2,28 +2,33 @@
 <h1>Cito PHP - A lightweight PHP MVC Framework</h1>
 
 <h2>Intro</h2>
-<p>Cito PHP is a lightweight and flexible PHP MVC framework. Most PHP frameworks are overkill. Cito PHP is a barebones framework that is under 20kb for the entire project.</p>
+<p>Cito PHP is a lightweight and flexible PHP MVC framework. Most PHP frameworks are overkill. Cito PHP is a barebones framework that is just over 30kb for the entire project.</p>
 
 <h2>Documentation</h2>
 
 <h3>Getting Started</h3>
-<p>To get started open index.php at the root of the project. Find the two lines below and change to reflect your development environment.</p>
+<p>To get started open index.php at the root of the project. Find the two lines below and change to reflect your development environment. HTTP_SERVER is the location of your website, for local testing use http://localhost. The REWRITE_BASE is used if your project is in a subdirectory. For example, example.com/citophp or localhost/citophp. Finally the DIR_ROOT is the path to the project directory.</p>
 
 <pre style="background-color:#EBEBEB;padding: 15px 5px;">
 define('HTTP_SERVER', 'www.example.com');
+define('REWRITE_BASE', '');
 define('DIR_ROOT', '/var/www/html/example/');
 </pre>
 
-<p>If you intend to use a database you will need to define the database constants and uncomment the following line.</p>
+<p>If you intend to use a database you will need to provide your database information on the following lines.</p>
 
 <pre style="background-color:#EBEBEB;padding: 15px 5px;">
-//$db = new Db(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+//define('DB_DRIVER', 'mysqli');
+//define('DB_HOSTNAME', 'localhost');
+//define('DB_USERNAME', 'admin');
+//define('DB_PASSWORD', 'password');
+//define('DB_DATABASE', 'database');
 </pre>
 
 <h3>Structure</h3>
 
 <h4>MVC</h4>
-<p>MVC - Model, View, Controller. The model represents the application core (the data), the view displays the data, and the controller handles the business logic. If you're not familiar with MVC Google it there are plenty of useful articles on the subject.</p>
+<p>MVC - Model, View, Controller. The model represents the application core (the data), the view displays the data, and the controller handles the business logic. If you're not familiar with MVC, Google it there are plenty of useful articles on the subject.</p>
 
 <h4>Index</h4>
 <p>The index.php document at the root of the project isn't a typical index page. It is use to define classes and get the data to display all pages. Different pages are called via the route parameter. For example, www.example.com/index.php?route=directory/page.</p>
@@ -36,7 +41,11 @@ define('DIR_ROOT', '/var/www/html/example/');
 &lt;form action=&quot;index.php?route=common/home/form&quot;&gt;
 </pre>
 
-<p>Above example will call the form method in the /controller/common/home.php controller document. More information about the route parameter and documentation for creating new pages can be <a href="index.php?route=example/page">found here</a>.</p>
+<p>Above example will call the form method in the /controller/common/home.php controller document. More information about the route parameter and documentation for creating new pages can be <a href="<?php echo $example_link; ?>">found here</a>.</p>
+
+<h3>SEO URLs</h3>
+
+<p>Cito PHP has the option to enable SEO friendly URLs. SEO friendly URLs will replace the route parameter in the url with whatever you choose. To enable this you will need to have your database configured and add an additional table to hold the keywords. Steps to enable can be found <a href="<?php echo $seo_link; ?>">here</a>.</p>
 
 <h3>Errors</h3>
 <p>Errors are logged in the error.txt document at the root of the project.</p>
@@ -46,11 +55,7 @@ define('DIR_ROOT', '/var/www/html/example/');
 </pre>
 
 <h3>Model</h3>
-<p>To begin open index.php at the root of the project. Change DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE and uncomment the following line.</p>
-
-<pre style="background-color:#EBEBEB;padding: 15px 5px;">
-$db = new Db(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-</pre>
+<p>To begin open index.php at the root of the project. Change DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE to reflect your environment.</p>
 
 <p>On the controller you need to load the model then make the call to the method.</p>
 
@@ -90,13 +95,15 @@ class ControllerCommonHome extends Controller {
 
 <p>This is the class name for the home.php in /controller/common directory.</p>
 
-<p>There is always on method required for a page</p>
+<p>There is always a method required for a page.</p>
 
 <pre style="background-color:#EBEBEB;padding: 15px 5px;">
 public function index() {
 </pre>
 
-<p>The default function will always be index. As a result index.php?route=common/home is the same as index.php?route=common/home/index.</p>
+<p>The default method will always be index.</p>
+
+<p>To call another method from the uri simply add a third parameter to the route. For example, index.php?route=example/page/testing. This would call the testing method on the /controller/example/page.php document. Because the default method is index this page index.php?route=common/home is the same as index.php?route=common/home/index.</p>
 
 <h4>Children</h4>
 <p>You will likely be passing data between your controller and the children. You'll likely pass the title, meta description, meta keywords, etc...</p>
@@ -160,6 +167,6 @@ return $this->render();
 
 <h3>Contributions</h3>
 
-<p>Most of the work in this project isn't original. I have utilized several popular frameworks, removed unnecessary bloat, and modified the project as necessary.</p>
+<p>Parts of this project are not unique and can be found among other popular php frameworks. I have utilized several popular frameworks, removed unnecessary bloat, and modified the project as necessary.</p>
 
 <?php echo $common_footer; ?>

@@ -6,6 +6,9 @@ class ControllerCommonHeader extends Controller {
 			$this->data[$key] = $val;
 		}
 		
+    //Get the link to the homepage
+    $this->data['home_link'] = $this->getUrl('common/home');
+    
 		//Set up get styles and scripts
 		$this->document->addStyle('view/styles/styles.css', 'stylesheet', 'screen');
 		$this->data['styles'] = $this->document->getStyles();
